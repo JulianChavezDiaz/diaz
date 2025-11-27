@@ -8,7 +8,7 @@ deploy:
 	docker stack deploy --with-registry-auth -c $(STACK_FILE) $(APP_NAME)
 
 logs:
-	docker service logs -f $(APP_NAME)_$(APP_NAME)
+	docker service logs -f $(APP_NAME)_diaz  # ✅ CORRECTO
 
 rm:
 	docker stack rm $(APP_NAME)

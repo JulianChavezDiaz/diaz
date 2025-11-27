@@ -1,4 +1,4 @@
-from app.main import app
+from app import app  # ✅ Import simple desde raíz
 
 def test_home():
     client = app.test_client()
