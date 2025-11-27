@@ -4,10 +4,14 @@ on:
   push:
     branches: [diaz]
 
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 30  # ✅ AGREGAR TIMEOUT
+    timeout-minutes: 30
     
     steps:
     - name: 🧾 Checkout repository
