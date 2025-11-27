@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  diaz:
+    image: ghcr.io/julianchavezdiaz/diaz:1.0.5
+    build: .
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.diaz.entrypoints=http"
+        - "traefik.http.routers.diaz.rule=Host(diaz.byronrm.com)"
+        - "traefik.http.middlewares.diaz-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.diaz.middlewares=diaz-https-redirect"
+        - "traefik.http.routers.diaz-secure.entrypoints=https"
+        - "traefik.http.routers.diaz-secure.rule=Host(diaz.byronrm.com)"
+        - "traefik.http.routers.diaz-secure.tls=true"
+        - "traefik.http.routers.diaz-secure.tls.certresolver=http"
+        - "traefik.http.routers.diaz-secure.service=diaz"
+        - "traefik.http.services.diaz.loadbalancer.server.port=80"
+        - "traefik.docker.network=traefik-public"
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true
