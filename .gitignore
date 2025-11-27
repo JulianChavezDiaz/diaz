@@ -1,1 +1,24 @@
-env
+# Entornos virtuales
+venv/
+env/
+.venv/
+
+# Cachés de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Configuración local
+.env
+
+# Archivos creados por herramientas
+*.sqlite3
+instance/
+
+# Bytecode compilado
+*.pyc
