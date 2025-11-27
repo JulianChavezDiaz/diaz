@@ -17,7 +17,7 @@ services:
         - "traefik.http.routers.diaz-secure.tls=true"
         - "traefik.http.routers.diaz-secure.tls.certresolver=http"
         - "traefik.http.routers.diaz-secure.service=diaz"
-        - "traefik.http.services.diaz.loadbalancer.server.port=80"
+        - "traefik.http.services.diaz.loadbalancer.server.port=1002"
         - "traefik.docker.network=traefik-public"
     networks:
       - traefik-public

@@ -19,4 +19,4 @@ def health():
 
 # ✅ AGREGAR ESTO - Ejecutar en puerto 80
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80)  # ← Puerto 80 para producción
+    app.run(host="0.0.0.0", port=1002)  # ← Puerto 80 para producción
