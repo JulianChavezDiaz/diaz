@@ -53,7 +53,7 @@ jobs:
         push: true
         tags: ghcr.io/julianchavezdiaz/diaz:1.0.5
       
-    - name: 🧾 Mostrar variables básicas (solo locales, no secretos)
+    - name: 🧾 Mostrar variables básicas
       run: |
         echo "Probando conexión SSH con:"
         echo "Host: ${{ secrets.VPS_HOST }}"
@@ -91,20 +91,23 @@ jobs:
         password: ${{ secrets.VPS_PASSWORD }}
         port: ${{ secrets.VPS_SSH_PORT }}   
         script: |
-          echo "✅ desplegando servicios"
+          echo "✅ Desplegando servicios"
           cd ~/deploy
 
-          echo " descargando la imagen desde GIT"
-          echo "${{ secrets.GHCR_PATH }}" | docker login ghcr.io -u demlema --password-stdin
+          echo "🔐 Login a GitHub Container Registry"
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+          
+          echo "📥 Descargando la imagen"
           docker pull ghcr.io/julianchavezdiaz/diaz:1.0.5
 
-          echo " deteniendo los servicios"
+          echo "🛑 Deteniendo los servicios anteriores"
           docker stack rm diaz || true 
 
-          echo "esperar 20 segundos..."
+          echo "⏳ Esperando 20 segundos..."
           sleep 20
 
-          echo "desplegano el stack a los servicios"
+          echo "🚀 Desplegando el stack de servicios"
           docker stack deploy --with-registry-auth -c stack.yml diaz
 
+          echo "📊 Verificando contenedores"
           docker ps
