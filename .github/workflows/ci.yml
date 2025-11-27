@@ -47,6 +47,6 @@ jobs:
         context: .
         file: ./diaz
         push: true
-        tags: ghcr.io/${{ github.repository_owner }}/diaz:1.0.5
+        tags: ghcr.io/julianchavezdiaz/diaz:1.0.5 
         
         
