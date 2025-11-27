@@ -1,7 +1,19 @@
 from flask import Flask, request, jsonify
-from model import simple_ai_response
 
 app = Flask(__name__)
+
+def simple_ai_response(texto: str) -> str:
+    """Función integrada - sin dependencias externas"""
+    texto = texto.lower()
+    
+    if "hola" in texto:
+        return "Hola, ¿cómo puedo ayudarte?"
+    if "adios" in texto or "chao" in texto:
+        return "Hasta luego!"
+    if "nombre" in texto:
+        return "Me llamo Diaz AI"
+    
+    return "No entiendo tu mensaje, pero estoy aprendiendo 😄"
 
 @app.route("/", methods=["GET"])
 def home():
@@ -18,4 +30,4 @@ def health():
     return jsonify({"status": "healthy"}), 200
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=1002)  
+    app.run(host="0.0.0.0", port=1002)
