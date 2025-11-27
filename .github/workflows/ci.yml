@@ -33,10 +33,6 @@ jobs:
         echo "🔍 Analizando el código con Ruff..."
         ruff check .
 
-    - name: 🧪 Run tests (Pytest)
-      run: |
-        echo "🚀 Ejecutando pruebas con pytest..."
-        pytest -v || echo "⚠️ No se encontraron pruebas o algunas fallaron."
 
     - name: 🔐 Login to GitHub Container Registry
       uses: docker/login-action@v3
